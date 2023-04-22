@@ -1,0 +1,377 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Prompt&display=swap");
+
+:root {
+  --bs-blue: #0095eb;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #28a745;
+  --bs-teal: #20c997;
+  --bs-cyan: #17a2b8;
+  --bs-white: #fff;
+  --bs-heading-gray: #8a8d93;
+  --bs-subheading-gray: #6a6c70;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #db6574;
+  --bs-secondary: #8a8d93;
+  --bs-success: #28a745;
+  --bs-info: #17a2b8;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #343a40;
+  --bs-bck-color: #22252a;
+  --bs-shade-grey: #2d3035;
+  --bs-background: #262932;
+  --bs-font-sans-serif: "Muli", -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.setmain {
+    margin-left: 10px;
+}
+
+.sethead h1 {
+    padding-top: 105px;
+    padding-left: 135px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    font-size: 35px;
+    text-align:left;
+    color:var(--bs-blue);
+    background-color: var(--bs-background);
+    height: 165px;
+}
+
+.setbody {
+    padding-left: 115px;
+}
+
+.settop {
+    border: 3px ;
+    padding: 20px;
+    display:inline-table;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.setgeneral {
+    /* height: 300px; */
+    float: left;
+    width: 30%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setgeneral h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.setgeneral p {
+    padding: 50px 10px 10px 10px;
+    font-size: 18px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.setaccount {
+    /* height: 300px; */
+    width: 30%;
+    float: left;
+    position: relative;
+    left: 55px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setaccount h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.setaccount p {
+    padding: 50px 10px 10px 10px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.settrade {
+    /* height: 300px; */
+    float: right;
+    width: 30%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.settrade h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.settrade p {
+    padding: 50px 10px 10px 10px;
+    font-size: 18px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.setbottom
+{
+    border: 3px ;
+    padding: 20px;
+    margin-top: 100px;
+    display: inline-table;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    position: relative;
+    bottom: 80px;
+}
+
+.setnoti {
+    /* height: 300px; */
+    width: 30%;
+    float: left;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setnoti h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.setnoti p {
+    padding: 50px 10px 10px 10px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.setprivacy {
+    /* height: 300px; */
+    width: 30%;
+    float: left;
+    position: relative;
+    left: 55px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setprivacy h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.setprivacy p {
+    padding: 50px 10px 10px 10px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.setdeposit {
+    /* height: 300px; */
+    width: 30%;
+    float: right;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight:lighter;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    background-color:var(--bs-background) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.setdeposit h2 {
+    padding: 10px;
+    background-image: linear-gradient(to left,#009FFD,#2A2A72);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color:white ;
+}
+
+.setdeposit p {
+    padding: 50px 10px 10px 10px;
+    background-color: var(--bs-background);
+    height: 150px;
+    font-size: 18px;
+    font-weight: lighter;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.icon {
+    font-size:60px;
+    padding: 5px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--bs-background);
+    border-radius: 27px;
+    color: white;
+}
+
+.setgeneral button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+
+.setaccount button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+
+.settrade button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+
+.setprivacy button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+
+.setdeposit button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+
+.setnoti button {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 30px;
+    background-color: var(--bs-background);
+    border: var(--bs-background);
+    color: white;
+}
+.arrow {
+    font-size: 40px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.arrow:hover{
+    cursor: pointer;
+}
