@@ -13,13 +13,16 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16
-      - run: |
+      - name: backend dependencies
+        run: |
           cd backend
           npm ci
 
-      - run: |
+      - name: frontend dependencies
+        run: |
           cd frontend
           npm ci
-      - run: |
+      - name: Unit tests
+        run: |
           cd backend
           npm test
