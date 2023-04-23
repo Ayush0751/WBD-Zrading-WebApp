@@ -54,6 +54,39 @@ const upload = require('../middleware/upload');
  *         description: Some server error
  */
 
+/**
+ * @swagger
+ * /api/users/getPost:
+ *   get:
+ *     summary: Get post by id
+ *     tags: [Post]
+ *     responses:
+ *       200:
+ *         description: The book description
+ */
+
+/**
+ * @swagger
+ * /api/users/deletePost/{id}:
+ *   delete:
+ *     summary: Delete an user
+ *     tags: [Post]
+ *     parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: string
+ *          required: true
+ * 
+ *     responses:
+ *       200:
+ *         description: User successfully deleted4
+ *       404:
+ *         description: no such user
+ *       500:
+ *         description: Internal server error
+ */
+
 const router = express.Router();
 
 router.get('/', usersController.getUsers);

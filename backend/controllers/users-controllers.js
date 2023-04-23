@@ -336,6 +336,7 @@ const deletePost = async (req, res, next) =>{
     const result = await Post.findByIdAndDelete({_id:id});
 
     console.log(result, "result");
+    res.sendStatus(200);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
