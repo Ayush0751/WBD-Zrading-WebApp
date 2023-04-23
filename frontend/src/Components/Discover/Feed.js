@@ -137,15 +137,8 @@ function Feed(props) {
                 </form>
               </div>
             </div>
-
-            <div className={styles["post-bottom"]}>
-              <div className={styles["action"]}>
-                <i className={"fa fa-image"}></i>
-                <span>Photo/Video</span>
-              </div>
-            </div>
           </div>
-          <div className={styles["recentPosts"]}>
+          <div className={styles["recentPosts"] } style={{color:'black'}} >
             {console.log("fsdddddddddd",postdata.length)}
           {postdata?.length > 0 &&
                   postdata.map((item, index) => {

@@ -4,7 +4,7 @@ import styles from "../../Assets/css/Discover/Feed.module.css";
 function Post(props) {
   return (
     <>
-    <div className={styles["recentPosts"]}>
+    <div className={styles["recentPosts"] } style={{backgroundColor:'white'}}>
       <div className={styles["postTop"]}>
         <div className={styles["trdrDp"]}>
           <img
