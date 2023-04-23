@@ -64,7 +64,8 @@ function Feed(props) {
 
     setnewPost("")
     setpostImageName("")
-    setpostImage("")  }
+    setpostImage("")  
+  }
 
   useEffect(() => {
     // let pp;
@@ -144,7 +145,7 @@ function Feed(props) {
                   postdata.map((item, index) => {
                     console.log("index is", index);
                     return (
-                      <Post postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage}/>
+                      <Post postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage} postId={item._id}/>
                       );
           })}
             {/* <Post postCreatorName = "Ayush Raj" timeOfPost="5 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year  " postImage = "platinumBg.jpg"/>

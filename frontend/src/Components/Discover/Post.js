@@ -1,7 +1,48 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styles from "../../Assets/css/Discover/Feed.module.css";
+import axios from "axios";
 
 function Post(props) {
+  const [flag, setflag] = useState(false)
+  const  handleDeletePost = async(id)=>{
+    console.log("in delete");
+    console.log("id is",id);
+    // const pid = props.postId;
+    try{
+      const pst = await (axios.delete("http://localhost:8081/api/users/deletePost/"+id));
+        console.log("sdf");
+        console.log(pst);
+        alert('Post Deleted Successfully')
+        setflag(true);
+    }
+    catch(error) {
+      console.error("errorfsfsf");
+      console.error(error);
+      // alert(error)
+    }
+    
+  }
+
+  const handleGetPost = async( )=>{
+    const pst = await axios.get(
+      "http://localhost:8081/api/users/getPost");
+      console.log("sdf");
+      console.log(pst);
+    if (pst.length === 0) {
+      
+      console.log("No post!");
+      // return 0;
+    } else {
+      console.log("Post fetched successful!");
+    }
+    setflag(false);
+    
+  }
+  useEffect(() => {
+    handleGetPost()    
+  }, [flag])
+
+  
   return (
     <>
     <div className={styles["recentPosts"] } style={{backgroundColor:'white'}}>
@@ -43,8 +84,11 @@ function Post(props) {
             <span> Comment</span>
           </div>
           <div className={styles["icon"]}>
-            <i class="fa fa-share"></i>
-            <span> Share</span>
+            <i class="fa fa-remove" ></i>
+            <span onClick={() => {
+                              handleDeletePost(props.postId);
+                            }}> Delete</span>
+            
           </div>
         </div>
       </div>
