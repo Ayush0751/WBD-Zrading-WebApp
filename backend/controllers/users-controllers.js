@@ -271,14 +271,14 @@ const getUser=async(req,res,next)=>{
 
 const getPost = async (req, res, next) => {
   let result;
-  const postid = await Post.findOne({}, { _id: 1 }).sort({ _id: -1 });
+  // const postid = await Post.findOne({}, { _id: 1 }).sort({ _id: -1 });
   // console.log("id is ",postid);
   // console.log("h");
-  const postLists = await redisClient.get(`postLists?id=${postid}`);
-    if(postLists){
-      result = (JSON.parse(postLists))
-    }
-    else{
+  // const postLists = await redisClient.get(`postLists?id=${postid}`);
+    // if(postLists){
+    //   result = (JSON.parse(postLists))
+    // }
+    // else{
       result = await Post.find({}).sort({ createdAt: -1 });
       // console.log(result,"holaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       try {
@@ -287,13 +287,11 @@ const getPost = async (req, res, next) => {
         res.status(500).json({ error: error.message });
         return next(error);
       }
-      const count = 2
-      // const count = await Post.countDocuments()
-      // console.log("number is", count)
+    
       console.log(result, "result");
-      redisClient.setEx(`postLists?id=${postid}`, DEFAULT_EXPIRATION,JSON.stringify(result));
+      // redisClient.setEx(`postLists?id=${postid}`, DEFAULT_EXPIRATION,JSON.stringify(result));
       // redisClient.setEx("postListsLen",JSON.stringify(count));
-    }
+    // }
     res.json({ result });
 };
 
@@ -318,6 +316,31 @@ const postCreate = (req, res) => {
     });
 };
 
+const deletePost = async (req, res, next) =>{
+  const id = req.params.id;
+  console.log(id, "<----id");
+  // try {
+  //   const pstData = await Post.findById(id);
+  //   // const { amount, ordertime,name } = pstData;
+  //   console.log(pstData, "pstData");
+  //   // historyAdd(amount, ordertime,name);
+
+  //   console.log(result, "result");
+  // } catch (error) {
+  //   res.status(500).json({ error: error.message });
+  // }
+
+
+
+  try {
+    const result = await Post.findByIdAndDelete({_id:id});
+
+    console.log(result, "result");
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 
 
 
@@ -339,3 +362,4 @@ exports.getUser = getUser;
 
 exports.getPost = getPost;
 exports.postCreate = postCreate;
+exports.deletePost = deletePost;
