@@ -42,7 +42,10 @@ const signup = async (req, res, next) => {
 
   let existingUser;
   try {
+    console.log(email);
     existingUser = await User.findOne({ email: email });
+    console.log("hiiii");
+    
   } catch (err) {
     const error = new HttpError(
       "Signing up failed, please try again later.",
@@ -50,7 +53,7 @@ const signup = async (req, res, next) => {
     );
     return next(error);
   }
-
+  
   if (existingUser) {
     const error = new HttpError(
       "User exists already, please login instead.",
