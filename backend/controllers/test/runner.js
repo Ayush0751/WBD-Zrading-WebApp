@@ -136,13 +136,13 @@ describe("Post api", () => {
 //       });
 //   });
 
-  // after((done) => {
-  //     // User.remove({}, (err) => {
-  //     //   if(err) {console.log(err);}
-  //     // });
+  after((done) => {
+      // User.remove({}, (err) => {
+      //   if(err) {console.log(err);}
+      // });
 
-  //     mongoose.disconnect();
-  //     done()
-  // });
+      mongoose.disconnect();
+      done()
+  });
 
 });

@@ -4,7 +4,7 @@
   "description": "backend for login",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --recursive **/test/runner.js",
+    "test": "mocha --recursive --exit **/test/runner.js",
     "serve": "nodemon server.js"
   },
   "author": "ayush",
