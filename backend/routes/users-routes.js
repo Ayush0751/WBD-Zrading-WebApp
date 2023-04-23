@@ -113,6 +113,8 @@ router.post('/copy-order', usersController.sendCopy);
 router.post('/uploadpost', upload.single('postImage'),usersController.postCreate);
 router.get('/getPost', usersController.getPost);
 router.delete('/deletePost/:id', usersController.deletePost);
+router.post('/addSubscription', usersController.addSubscription);
+router.get('/getSubscriptions', usersController.getSubscriptions);
 
 
 module.exports = router;

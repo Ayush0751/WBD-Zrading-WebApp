@@ -6,6 +6,7 @@ const HttpError = require("../models/http-error");
 const { User, Copy, History,Traders } = require("../models/user");
 // const async = require("hbs/lib/async");
 const Post = require("../models/post")
+const Subscription = require("../models/subscription")
 
 const Redis  = require('redis')
 const redisClient = Redis.createClient()
@@ -319,17 +320,6 @@ const postCreate = (req, res) => {
 const deletePost = async (req, res, next) =>{
   const id = req.params.id;
   console.log(id, "<----id");
-  // try {
-  //   const pstData = await Post.findById(id);
-  //   // const { amount, ordertime,name } = pstData;
-  //   console.log(pstData, "pstData");
-  //   // historyAdd(amount, ordertime,name);
-
-  //   console.log(result, "result");
-  // } catch (error) {
-  //   res.status(500).json({ error: error.message });
-  // }
-
 
 
   try {
@@ -341,6 +331,80 @@ const deletePost = async (req, res, next) =>{
     res.status(500).json({ error: error.message });
   }
 }
+const addSubscription = async (req, res, next) =>{
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   return next(
+  //     new HttpError("Invalid inputs passed, please check your data.", 422)
+  //   );
+  // }
+
+  const { name, trader_id,age,bio,rating,address, copiers,profits,membership} = req.body;
+  // console.log(req.file);
+  console.log(req.body);
+
+  let existingSubs;
+  try {
+    console.log(trader_id);
+    existingSubs = await User.findOne({ trader_id: trader_id });
+    console.log("hiiii");
+    
+  } catch (err) {
+    const error = new HttpError(
+      "Adding Subscription failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+  
+  if (existingSubs) {
+    const error = new HttpError(
+      "Subscription already added.",
+      422
+    );
+    return next(error);
+  }
+  console.log("hiiii");
+  // console.log(image);
+  const createSubs = new Subscription({
+    name, 
+    trader_id,
+    age,
+    bio,
+    rating,
+    address,
+    copiers,
+    profits,
+    membership,
+  });
+  console.log(createSubs);
+
+  try {
+    createSubs.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Signing up failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(201).json({ user: createSubs.toObject({ getters: true }) });
+}
+const getSubscriptions = async (req, res, next) =>{
+    let result;
+    result = await Subscription.find({});
+    try {
+      console.log("Subscriptions fetched");
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+      return next(error);
+    }
+  
+    console.log(result, "result");
+    res.json({ result });
+}
+
 
 
 
@@ -364,3 +428,5 @@ exports.getUser = getUser;
 exports.getPost = getPost;
 exports.postCreate = postCreate;
 exports.deletePost = deletePost;
+exports.addSubscription = addSubscription;
+exports.getSubscriptions = getSubscriptions;

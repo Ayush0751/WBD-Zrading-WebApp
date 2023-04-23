@@ -1,9 +1,12 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import Navbar from "../Navbar/Navbar";
 import SubscribedTradersList from "./SubscribedTradersList";
 import SubscribedTraders from "./SubscribedTraders";
 import Chat from "./Chat";
 import styles from "../../Assets/css/UserSubscription/UserSubscription.module.css";
+
+import axios from "axios";
+
 
 function UserSubscription() {
   var trader1 = {
@@ -49,6 +52,33 @@ function UserSubscription() {
     }
   }
 
+  const [subsData,setSubsData]=useState('');
+  const handleGetSubs = async( )=>{
+    const subs = await axios.get(
+      "http://localhost:8081/api/users/getPost");
+      console.log("sdf");
+      console.log(subs);
+    if (subs.length === 0) {
+      
+      console.log("No traders subscribed");
+      // return 0;
+    } else {
+      console.log("Post fetched successful!");
+    }
+    // setflag(false);
+    setSubsData(subs.data.result)
+
+  }
+
+  useEffect(() => {
+    // let pp;
+    handleGetSubs()
+      // setflag(false);
+    
+  }, [])
+
+
+
   const [activeTraderName, setactiveTraderName] = useState(trader1.traderName)
   const [activetraderImg, setactivetraderImg] = useState(trader1.traderImg)
   const [activeTradermembership, setactiveTradermembership] = useState(trader1.membership)
@@ -77,6 +107,13 @@ function UserSubscription() {
         {/* <div className={styles.traderInfo} style={{backgroundImage:"url(../../images/".concat(bgImage).concat(")"), backgroundRepeat: 'no-repeat',backgroundSize: "100% 100%",boxShadow: "1px -2px 22px".concat(col)}}> */}
         <div className={styles.traderInfo} style={{backgroundImage: "linear-gradient(to right, rgba(".concat(rgbCol).concat(",0), rgba(").concat(rgbCol).concat(",0.5))")}}>
           <SubscribedTraders traderImg={activetraderImg} traderName = {activeTraderName} tradingSince = {activeTradertradingSince} membership={activeTradermembership}/>
+          {/* {subsData?.length > 0 &&
+                  subsData.map((item, index) => {
+                    console.log("index is", index);
+                    return (
+                      <SubscribedTraders traderImg={activetraderImg} traderName = {index.name} bio = {index.bio} tradingSince={index.membership}/>
+                      );
+          })} */}
         </div>
 
         <div className={styles.line}></div>
