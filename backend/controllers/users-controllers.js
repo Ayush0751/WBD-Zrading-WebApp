@@ -85,15 +85,23 @@ const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   let existingUser;
+  const userList = await redisClient.get(`userList?email=${email}`);
+  if(userList){
+    existingUser = (JSON.parse(userList))
+  }
+  else{
+    try {
+      existingUser = await User.findOne({ email: email });
+    } catch (err) {
+      const error = new HttpError(
+        "Loggin in failed, please try again later.",
+        500
+      );
+      return next(error);
+    }
+    redisClient.setEx(`userList?email=${email}`, DEFAULT_EXPIRATION,JSON.stringify(existingUser));
 
-  try {
-    existingUser = await User.findOne({ email: email });
-  } catch (err) {
-    const error = new HttpError(
-      "Loggin in failed, please try again later.",
-      500
-    );
-    return next(error);
+
   }
 
   if (!existingUser || existingUser.password !== password) {
@@ -106,7 +114,7 @@ const login = async (req, res, next) => {
 
   res.json({
     message: "Logged in!",
-    user: existingUser.toObject({ getters: true }),
+    user: existingUser,
   });
 };
 let amount;
@@ -225,13 +233,19 @@ const getHistory = async (req, res, next) => {
 const getTraders = async (req, res, next) => {
   let result;
   console.log("hola");
-  try {
-    // const collection = await mongoose.db("zrading2").collection("traders");
-    result = await Traders.find();
-    console.log("Trader passed");
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-    return next(error);
+  const traderLists = await redisClient.get(`traderLists`);
+  if(traderLists){
+    result = (JSON.parse(traderLists))
+  }
+  else{
+    try {
+      result = await Traders.find();
+      console.log("Trader passed");
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+      return next(error);
+    }
+    redisClient.setEx(`traderLists`, DEFAULT_EXPIRATION,JSON.stringify(result));
   }
   console.log(result, "result5555");
   res.json({ result });
