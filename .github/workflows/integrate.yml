@@ -1,0 +1,16 @@
+name: node integration
+
+on:
+  push:
+    branches: main
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - run: npm ci
