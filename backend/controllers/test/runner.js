@@ -21,7 +21,7 @@ describe("Post api", () => {
   })
   .catch(err => {
   console.log(err);
-});
+      });
     
       dummyPost = new User({
         'name': 'ayush',
@@ -35,6 +35,7 @@ describe("Post api", () => {
           id = post._id;
       });
   });
+});
 
   describe("Create Post", () => {
       it("should create a new post", (done) => {
@@ -57,6 +58,21 @@ describe("Post api", () => {
         
         posts.signup(req, res);
       });
+
+      it("should throw an error for empty email", (done) => {
+        let req = {
+          body : {'name': 'ayush',
+                  'email': '',
+                  'password': 'sdfhjlb',
+                  'image': ''
+                }
+        };
+
+        let res = testUtils.responseValidatorAsync(500, (err) => {
+          
+        },done());
+
+        posts.signup(req, res);
   });
 
   describe("GET Posts", () => {
@@ -73,33 +89,33 @@ describe("Post api", () => {
       });
   });
 
-//   describe("GET Post", () => {
-//       it("should get a post by id", (done) => {
-//         let req = {
-//           params : {id: id}
-//         };
+  // describe("GET Post", () => {
+  //     it("should get a post by id", (done) => {
+  //       let req = {
+  //         params : {id: id}
+  //       };
 
-//         let res = testUtils.responseValidatorAsync(200, (post) => {
-//           post.title.should.equal('dummy');
-//           post.should.have.property('title');
-//           done();
-//         });
+  //       let res = testUtils.responseValidatorAsync(200, (post) => {
+  //         post.title.should.equal('dummy');
+  //         post.should.have.property('title');
+  //         done();
+  //       });
 
-//         posts.getPost(req, res);
-//       });
+  //       posts.getPost(req, res);
+  //     });
 
-//       it("should throw an error for invalid id", (done) => {
-//         let req = {
-//           params : {id: '23545'}
-//         };
+  //     it("should throw an error for invalid id", (done) => {
+  //       let req = {
+  //         params : {id: '23545'}
+  //       };
 
-//         let res = testUtils.responseValidatorAsync(500, (err) => {
-//           done();
-//         });
+  //       let res = testUtils.responseValidatorAsync(500, (err) => {
+  //         done();
+  //       });
 
-//         posts.getPost(req, res);
-//       });
-//   });
+  //       posts.getPost(req, res);
+  //     });
+  // });
 
 //   describe("Update Post", () => {
 //       it("should update an existing post", (done) => {
