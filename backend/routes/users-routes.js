@@ -3,7 +3,8 @@ const { check } = require('express-validator');
 
 const usersController = require('../controllers/users-controllers');
 // const fileUpload = require('../middleware/file-upload');
-const upload = require('../middleware/upload');
+const upload = require('../middleware/upload1');
+const singleUpload = require('../middleware/multer');
 
 /**
  * @swagger
@@ -110,7 +111,7 @@ router.post('/login', usersController.login);
 router.get('/userDetails/:email', usersController.getUser);
 router.post('/copy-order', usersController.sendCopy);
 
-router.post('/uploadpost', upload.single('postImage'),usersController.postCreate);
+router.post('/uploadpost',singleUpload ,usersController.postCreate);
 router.get('/getPost', usersController.getPost);
 router.delete('/deletePost/:id', usersController.deletePost);
 router.post('/addSubscription', usersController.addSubscription);

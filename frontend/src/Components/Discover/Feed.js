@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useRef} from "react";
 import styles from "../../Assets/css/Discover/Feed.module.css";
 import Post from "./Post"
 import Copiers from "./Copiers"
@@ -10,8 +10,10 @@ import axios from "axios";
 
 
 function Feed(props) {
+  const fileRef = useRef(null);
   const [newPost, setnewPost] = useState("");
   const [flag, setflag] = useState(false)
+  const [deleteflag, setdeleteflag] = useState(false)
   const handlePost=(e) =>{
     setnewPost(e.target.value);
     // e.target.value = "";
@@ -21,18 +23,27 @@ function Feed(props) {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append("postText", newPost);
-    formdata.append("postImage", postImage);
+    // formdata.append("postImage", postImage);
+    formdata.append("file", fileRef.current.files[0]);
     formdata.append("postImageName", postImageName);
     console.log(postImage);
     console.log(formdata);
-    setflag(true);
+    
+    setTimeout(() => {
+      console.log("20000000000000000");
+      setflag(true);
+    }, 4000);
+
+
+    // setflag(true);
+    console.log("flag is ",flag);
     const pst = await axios.post(
       "http://localhost:8081/api/users/uploadPost",
       // {
         // postText: newPost
         formdata
-      // }
-    );
+        // }
+        );
     if (pst.length === 0) {
       console.log("Post failed!");
       // return 0;
@@ -60,7 +71,7 @@ function Feed(props) {
       // setLoadingState(false);
       // Navigate("/discover")
     }
-    setflag(false);
+    setflag(false)
     setPostdata(pst.data.result)
 
     setnewPost("")
@@ -71,6 +82,7 @@ function Feed(props) {
   useEffect(() => {
     // let pp;
     handleGetPost()
+    console.log("flag issssssss",flag);
       // setflag(false);
     
   }, [flag])
@@ -139,6 +151,7 @@ function Feed(props) {
                   <input
                     type="file"
                     name="myImage"
+                    ref={fileRef}
                     onChange={handleImageChange}
                   /> 
                   <br />
@@ -155,7 +168,7 @@ function Feed(props) {
                   postdata.map((item, index) => {
                     console.log("index is", index);
                     return (
-                      <Post postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage} postId={item._id}/>
+                      <Post postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage} postId={item._id} setdelflag ={setflag}/>
                       );
           })}
             {/* <Post postCreatorName = "Ayush Raj" timeOfPost="5 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year  " postImage = "platinumBg.jpg"/>
