@@ -5,8 +5,8 @@ import Copiers from "./Copiers";
 import Traders from "./Traders";
 import Navbar from "../Navbar/Navbar";
 import { TextField } from "@mui/material";
-import { Audio } from "react-loader-spinner";
-
+import { Audio ,ColorRing} from "react-loader-spinner";
+import Loader from "rsuite/Loader";
 import axios from "axios";
 
 function Feed(props) {
@@ -20,8 +20,10 @@ function Feed(props) {
     // e.target.value = "";
     // console.log(newPost);
   };
+  let [loadingState, setLoadingState] = useState(false);
   const handlePostSubmit = async (e) => {
     e.preventDefault();
+    setLoadingState(true);
     const formdata = new FormData();
     formdata.append("postText", newPost);
     // formdata.append("postImage", postImage);
@@ -49,6 +51,7 @@ function Feed(props) {
       formdata
       // }
     );
+
     if (pst.length === 0) {
       console.log("Post failed!");
       // return 0;
@@ -60,7 +63,7 @@ function Feed(props) {
     }
   };
   const [postdata, setPostdata] = useState("");
-  let [loadingState, setLoadingState] = useState(false);
+
   const handleGetPost = async () => {
     const pst = await axios.get("http://localhost:8081/api/users/getPost");
     console.log("sdf");
@@ -77,7 +80,6 @@ function Feed(props) {
     setflag(false);
     setloader(false);
     setPostdata(pst.data.result);
-    setLoadingState(true);
 
     setnewPost("");
     setpostImageName("");
@@ -159,7 +161,7 @@ function Feed(props) {
                         // height: '27px',
                         // fontSize: '1.2rem'
                       }
-                    }
+                    } 
                   />
                   <br />
                   <input
@@ -180,11 +182,17 @@ function Feed(props) {
             <div
               style={{
                 width: "200px",
-                height: "200px",
-                backgroundColor: "black",
+                height: "44px",
+                position: "relative",
+                left: "22em",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                top: "1em"
+                // backgroundColor: "black",
               }}
             >
-              <Audio
+              {/* <Audio
                 height="80"
                 width="80"
                 radius="9"
@@ -192,7 +200,16 @@ function Feed(props) {
                 ariaLabel="loading"
                 wrapperStyle
                 wrapperClass
-              />
+              /> */}
+              <ColorRing
+                visible={true}
+                height="50"
+                width="50"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#0095eb", "#0095eb", "#0095eb", "#abbd81", "#0095eb"]}
+              /> Loading...
             </div>
           )}
           <div className={styles["recentPosts"]} style={{ color: "black" }}>
