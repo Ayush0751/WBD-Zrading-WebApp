@@ -72,6 +72,7 @@ app.use(express.static("public"))
 app.use('/api/users', usersRoutes);
 app.use('/api/copy', copyRoutes);
 app.use('/api/trader', traderRoutes);
+// app.use('/api/trader', traderRoutes);
 // app.use('/api/places', placesRoutes);
 // app.use('/api/postDoc', postDocRoutes);
 
