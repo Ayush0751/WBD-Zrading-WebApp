@@ -31,7 +31,8 @@ const useSTyle = makeStyles((theme) => ({
     borderRight: "1px solid grey",
   },
 }));
-function StatsTr() {
+function StatsTr(props) {
+    const {items}=props;
   const classes = useSTyle();
   const [userData, setUserData] = useState({
     lavel: "Trade date:",
@@ -81,7 +82,7 @@ function StatsTr() {
 
         <div className={`${classes.title20} ${classes.tt0}`}>
           <SocialDistanceIcon style={{ fontSize: "7em" }} />
-          <h3 style={{position:"relative",left:"35px"}} >221</h3>
+          <h3 style={{position:"relative",left:"35px"}} >{items.copiers}</h3>
           <h5 style={{ right: "21px", position: "relative", bottom: "14px",fontSize:"18px"  }}>
             Copiers Last month
           </h5>

@@ -342,20 +342,14 @@ const deletePost = async (req, res, next) =>{
   }
 }
 const addSubscription = async (req, res, next) =>{
-  // const errors = validationResult(req);
-  // if (!errors.isEmpty()) {
-  //   return next(
-  //     new HttpError("Invalid inputs passed, please check your data.", 422)
-  //   );
-  // }
 
-  const { name, trader_id,age,bio,rating,address, copiers,profits,membership} = req.body;
+  const { name, trader_id,membership,bio} = req.body;
   // console.log(req.file);
   console.log(req.body);
 
   let existingSubs;
   try {
-    console.log(trader_id);
+    console.log(trader_id,"trader_id");
     existingSubs = await User.findOne({ trader_id: trader_id });
     console.log("hiiii");
     
@@ -379,13 +373,8 @@ const addSubscription = async (req, res, next) =>{
   const createSubs = new Subscription({
     name, 
     trader_id,
-    age,
-    bio,
-    rating,
-    address,
-    copiers,
-    profits,
     membership,
+    bio
   });
   console.log(createSubs);
 
@@ -393,9 +382,10 @@ const addSubscription = async (req, res, next) =>{
     createSubs.save();
   } catch (err) {
     const error = new HttpError(
-      "Signing up failed, please try again later.",
+      "Subscription Failed, Please try again.",
       500
     );
+    alert("Subscription Failed, Please try again.")
     return next(error);
   }
 

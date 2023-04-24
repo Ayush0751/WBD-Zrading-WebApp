@@ -12,9 +12,9 @@ import Navbar from '../../Navbar/Navbar'
 // import { TextField } from 'react-admin'
 
 function TraderFeed (props) {
-  const { sideBarShow } = props
+  const { sideBarShow ,items} = props
 
-  console.log(sideBarShow,"sideBarShow");
+//   console.log(sideBarShow,"sideBarShow");
   const [newPost, setnewPost] = useState('')
   const [flag, setflag] = useState(false)
   const handlePost = (e) => {
@@ -28,8 +28,8 @@ function TraderFeed (props) {
     formdata.append('postText', newPost)
     formdata.append('postImage', postImage)
     formdata.append('postImageName', postImageName)
-    console.log(postImage)
-    console.log(formdata)
+    // console.log(postImage)
+    // console.log(formdata)
     setflag(true)
     const pst = await axios.post(
       'http://localhost:8081/api/users/uploadPost',
@@ -52,8 +52,8 @@ function TraderFeed (props) {
   const handleGetPost = async () => {
     const pst = await axios.get(
       'http://localhost:8081/api/users/getPost')
-    console.log('sdf')
-    console.log(pst)
+    // console.log('sdf')
+    // console.log(pst)
     if (pst.length === 0) {
       console.log('No post!')
       // return 0;
@@ -76,7 +76,7 @@ function TraderFeed (props) {
     handleGetPost()
     // setflag(false);
   }, [flag])
-  console.log({ postdata })
+//   console.log({ postdata })
 
   const calculateTime = (createdAt) => {
     const createdAtDate = new Date(createdAt)
@@ -160,9 +160,9 @@ function TraderFeed (props) {
           <div className={styles.recentPosts} >
           {postdata?.length > 0 &&
                   postdata.map((item, index) => {
-                    console.log('index is', index)
+                    // console.log('index is', index)
                     return (
-                      <Post key={item.id} postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage}/>
+                      <Post key={item.id} postCreatorName = {items.name} timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage}/>
                     )
                   })}
             {/* <Post postCreatorName = "Ayush Raj" timeOfPost="5 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year  " postImage = "platinumBg.jpg"/>

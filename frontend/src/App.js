@@ -25,6 +25,7 @@ import CashWithdrawal from './Components/ringu/CashWithdrawal';
 import Updatemodel from './Components/ringu/Updatemodel';
 import InviteFriend from './Components/ringu/InviteFriend';
 import IndexTF from './Components/AddFund/traderorofile/IndexTF';
+import ConfirmForm from './Components/AddFund/traderorofile/ConfirmForm';
 // import { Settings } from '';
 // import IndexTF from './Components/traderProfile/IndexTF'
 
@@ -87,6 +88,7 @@ function App() {
         <Route exact path="/withdraw" element={<CashWithdrawal />} />
         <Route exact path="/update" element={<Updatemodel/>} />
         <Route exact path="/invite" element={<InviteFriend/>} />
+        <Route exact path="/test" element={<ConfirmForm/>} />
 
         </Routes>
       

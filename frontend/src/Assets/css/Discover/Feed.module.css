@@ -139,9 +139,11 @@ body{
     color:#d74;
 }
 .recentPosts{
-    background-color: black;
     margin: 20px;
-    box-shadow: 1px -2px 22px rgb(213, 199, 199);
+    /* box-shadow: 1px -2px 22px rgb(213, 199, 199); */
+    /* border: 2px; */
+    background: none;
+    /* border-radius: 10px;
     /* border: 2px; */
 }
 .trdrDp{
