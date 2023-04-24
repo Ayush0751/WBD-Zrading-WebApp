@@ -21,7 +21,7 @@ jobs:
       - name: frontend dependencies
         run: |
           cd frontend
-          npm ci
+          npm i --force
       - name: Unit tests
         run: |
           cd backend

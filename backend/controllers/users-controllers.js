@@ -12,6 +12,9 @@ const Redis  = require('redis')
 const redisClient = Redis.createClient()
 const DEFAULT_EXPIRATION = 3600
 
+const cloudinary = require("../utils/cloudinary")
+const getDataUri = require("../utils/dataUri")
+
 // const redisClient = createClient();
 
 redisClient.connect();
@@ -272,14 +275,14 @@ const getUser=async(req,res,next)=>{
 
 const getPost = async (req, res, next) => {
   let result;
-  // const postid = await Post.findOne({}, { _id: 1 }).sort({ _id: -1 });
-  // console.log("id is ",postid);
-  // console.log("h");
-  // const postLists = await redisClient.get(`postLists?id=${postid}`);
-    // if(postLists){
-    //   result = (JSON.parse(postLists))
-    // }
-    // else{
+  const postid = await Post.findOne({}, { _id: 1 }).sort({ _id: -1 });
+  console.log("id is ",postid);
+  console.log("h");
+  const postLists = await redisClient.get(`postLists?id=${postid}`);
+    if(postLists){
+      result = (JSON.parse(postLists))
+    }
+    else{
       result = await Post.find({}).sort({ createdAt: -1 });
       // console.log(result,"holaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       try {
@@ -290,31 +293,38 @@ const getPost = async (req, res, next) => {
       }
     
       console.log(result, "result");
-      // redisClient.setEx(`postLists?id=${postid}`, DEFAULT_EXPIRATION,JSON.stringify(result));
+      redisClient.setEx(`postLists?id=${postid}`, DEFAULT_EXPIRATION,JSON.stringify(result));
       // redisClient.setEx("postListsLen",JSON.stringify(count));
-    // }
+    }
     res.json({ result });
 };
 
 
-const postCreate = (req, res) => {
-  // console.log(req.body);
+const postCreate = async (req, res) => {
   const { postText, postImageName } = req.body;
+  const file = req.file;
+  // console.log("kjhjkkijpo",file);
+  const fileUri = getDataUri(file)
+  console.log("kjhjkkijpo",fileUri);
+  const myCloud = await cloudinary.uploader.upload(fileUri.content)
+  console.log("kjhjkkijpo",myCloud);
+  const cloudimgurl = myCloud.secure_url;
   console.log("hi20212");
   console.log(postText);
   console.log(postImageName);
   const post = new Post({
     postText,
-    postImage: postImageName,
+    postImage: cloudimgurl,
   });
-  post
-    .save()
+  try{
+  await post.save()
     .then((result) => {
       res.redirect("/discover");
     })
-    .catch((err) => {
+  }
+    catch(err){
       console.log(err);
-    });
+    };
 };
 
 const deletePost = async (req, res, next) =>{

@@ -2,19 +2,23 @@ import React,{useState,useEffect} from 'react'
 import styles from "../../Assets/css/UserSubscription/MembershipDetails.module.css";
 
 function MembershipDetails(props) {
-    const [showPlans, setshowPlans] = useState("hide")
-    // setclickedEvent(props.clicked);
-    useEffect(() => {
-        if(props.clicked===true){
-            setshowPlans("show")
-            console.log({showPlans},showPlans);
-        }
-        else{
-            setshowPlans("hide");
-            console.log({showPlans});
-        }
+    const {setbtnStatus1}= props
+    const [showPlans, setshowPlans] = useState("")
+    const [flag, setflag] = useState(props.clicked)
 
-    })
+    // setclickedEvent(props.clicked);
+    // useEffect(() => {
+    //     // setflag(props.clicked)
+    //     if(flag===true){
+    //         setshowPlans("show")
+    //         console.log({showPlans},showPlans);
+    //     }
+    //     else{
+    //         setshowPlans("hide");
+    //         console.log({showPlans});
+    //     }
+
+    // })
 
     const planGold = ()=>{
         setplanType("goldPlan")
@@ -27,16 +31,19 @@ function MembershipDetails(props) {
         setgoldClass("hide")
         
     }
+    const [btn1,setBtn1]=useState()
     const closePlans = ()=>{
-        setshowPlans("hide")
-        props.clicked=false;
+        // setshowPlans("hide")
+        // setflag("false")
+       setbtnStatus1(false)
+        // props.clicked=false;
     }
     const [planType, setplanType] = useState("goldPlan")
     const [goldClass, setgoldClass] = useState("show")
     const [platClass, setplatClass] = useState("hide")
   return (
     <div>
-        <div className={styles['plans']+" "+styles[showPlans]}>
+        <div className={styles['plans']+" "+styles['show']}>   
             {/* <div className={`${styles.plans} ${styles.showPlans}`}> */}
             <div className={styles["plansHeading"]}>
                 <p onClick={planGold}>Gold</p>
