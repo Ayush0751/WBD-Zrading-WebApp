@@ -73,6 +73,7 @@ const [btnStatus, setbtnStatus] = useState(false)
         </div>
         <p className={styles.star}>🌟🌟🌟🌟</p>
         <p className={styles.traderName}>{props.traderName}</p>
+        <p className={styles.tradingSince}>{props.traderBio}</p>
         <p className={styles.tradingSince}><em> Subscribed Since: {props.tradingSince}</em></p>
         {/* <div className={`${styles.membership} {btnStatus?${styles.show}:${styles.hide}}`}> */}
         <div className={`${styles.membership} `}>

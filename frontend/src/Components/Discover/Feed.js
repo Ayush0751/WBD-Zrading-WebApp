@@ -1,25 +1,26 @@
-import React,{useState,useEffect,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../../Assets/css/Discover/Feed.module.css";
-import Post from "./Post"
-import Copiers from "./Copiers"
-import Traders from "./Traders"
+import Post from "./Post";
+import Copiers from "./Copiers";
+import Traders from "./Traders";
 import Navbar from "../Navbar/Navbar";
-import { TextField } from '@mui/material'
+import { TextField } from "@mui/material";
+import { Audio } from "react-loader-spinner";
 
 import axios from "axios";
-
 
 function Feed(props) {
   const fileRef = useRef(null);
   const [newPost, setnewPost] = useState("");
-  const [flag, setflag] = useState(false)
-  const [deleteflag, setdeleteflag] = useState(false)
-  const handlePost=(e) =>{
+  const [flag, setflag] = useState(false);
+  const [deleteflag, setdeleteflag] = useState(false);
+  const [loader, setloader] = useState(true);
+  const handlePost = (e) => {
     setnewPost(e.target.value);
     // e.target.value = "";
     // console.log(newPost);
-  }
-  const handlePostSubmit = async(e )=>{
+  };
+  const handlePostSubmit = async (e) => {
     e.preventDefault();
     const formdata = new FormData();
     formdata.append("postText", newPost);
@@ -28,22 +29,26 @@ function Feed(props) {
     formdata.append("postImageName", postImageName);
     console.log(postImage);
     console.log(formdata);
-    
+
+    setloader(true);
     setTimeout(() => {
       console.log("20000000000000000");
       setflag(true);
+      setloader(false);
     }, 4000);
+    // if(flag===false){
 
+    // }
 
     // setflag(true);
-    console.log("flag is ",flag);
+    console.log("flag is ", flag);
     const pst = await axios.post(
       "http://localhost:8081/api/users/uploadPost",
       // {
-        // postText: newPost
-        formdata
-        // }
-        );
+      // postText: newPost
+      formdata
+      // }
+    );
     if (pst.length === 0) {
       console.log("Post failed!");
       // return 0;
@@ -53,16 +58,14 @@ function Feed(props) {
       setLoadingState(false);
       // Navigate("/discover")
     }
-    
-  }
-  const [postdata,setPostdata]=useState('');
-  const handleGetPost = async( )=>{
-    const pst = await axios.get(
-      "http://localhost:8081/api/users/getPost");
-      console.log("sdf");
-      console.log(pst);
+  };
+  const [postdata, setPostdata] = useState("");
+  let [loadingState, setLoadingState] = useState(false);
+  const handleGetPost = async () => {
+    const pst = await axios.get("http://localhost:8081/api/users/getPost");
+    console.log("sdf");
+    console.log(pst);
     if (pst.length === 0) {
-      
       console.log("No post!");
       // return 0;
     } else {
@@ -71,56 +74,58 @@ function Feed(props) {
       // setLoadingState(false);
       // Navigate("/discover")
     }
-    setflag(false)
-    setPostdata(pst.data.result)
+    setflag(false);
+    setloader(false);
+    setPostdata(pst.data.result);
+    setLoadingState(true);
 
-    setnewPost("")
-    setpostImageName("")
-    setpostImage("")  
-  }
+    setnewPost("");
+    setpostImageName("");
+    setpostImage("");
+  };
 
   useEffect(() => {
     // let pp;
-    handleGetPost()
-    console.log("flag issssssss",flag);
-      // setflag(false);
-    
-  }, [flag])
-  console.log({postdata:postdata});
+    handleGetPost();
+    console.log("flag issssssss", flag);
+    setloader(false);
+    // setflag(false);
+  }, [flag]);
+  console.log({ postdata: postdata });
 
-  const calculateTime = (createdAt) =>{
+  useEffect(() => {
+    setLoadingState(false);
+  }, [postdata]);
+
+  const calculateTime = (createdAt) => {
     const createdAtDate = new Date(createdAt);
     const currentDate = new Date();
-    
+
     const timeDiff = Math.abs(currentDate.getTime() - createdAtDate.getTime()); // in milliseconds
-    
+
     const seconds = Math.floor(timeDiff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     let str;
-    if(minutes==0 && hours ==0){
-      return `${seconds} seconds ago`
-    }
-    else if(hours==0){
-      return `${minutes} minutes ago`
-    }
-    else{
-      return `${hours} hours ago`
+    if (minutes == 0 && hours == 0) {
+      return `${seconds} seconds ago`;
+    } else if (hours == 0) {
+      return `${minutes} minutes ago`;
+    } else {
+      return `${hours} hours ago`;
     }
     // return `created ${hours} hours, ${minutes % 60} minutes, ${seconds % 60} seconds`
-  }
-  const [postImage, setpostImage] = useState("")
-  const [postImageName, setpostImageName] = useState("")
-  const handleImageChange = (e) =>{
+  };
+  const [postImage, setpostImage] = useState("");
+  const [postImageName, setpostImageName] = useState("");
+  const handleImageChange = (e) => {
     setpostImage(e.target.files[0]);
-    setpostImageName(e.target.files[0].name)
-  }
+    setpostImageName(e.target.files[0].name);
+  };
 
-
-  let [loadingState, setLoadingState] = useState(false);
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className={styles["feedOuterContainer"]}>
         <div className={styles["feedInner"]}>
           <div className={styles["post"]}>
@@ -140,20 +145,29 @@ function Feed(props) {
                     placeholder="What's on your mind"
                     onChange={handlePost}
                   /> */}
-                  <TextField id="standard-basic" label="What's on your mind" variant="standard" name="post_text" onChange={handlePost} style={{
-                    // width: '19em',
-                    // position: 'relative',
-                    // right: '2em',
-                    // height: '27px',
-                    // fontSize: '1.2rem'
-                  }}/>
+                  <TextField
+                    id="standard-basic"
+                    label="What's on your mind"
+                    variant="standard"
+                    name="post_text"
+                    onChange={handlePost}
+                    style={
+                      {
+                        // width: '19em',
+                        // position: 'relative',
+                        // right: '2em',
+                        // height: '27px',
+                        // fontSize: '1.2rem'
+                      }
+                    }
+                  />
                   <br />
                   <input
                     type="file"
                     name="myImage"
                     ref={fileRef}
                     onChange={handleImageChange}
-                  /> 
+                  />
                   <br />
                   <div className={styles.postBtn}>
                     <button onClick={handlePostSubmit}>Post</button>
@@ -162,15 +176,41 @@ function Feed(props) {
               </div>
             </div>
           </div>
-          <div className={styles["recentPosts"] } style={{color:'black'}} >
-            {console.log("fsdddddddddd",postdata.length)}
-          {postdata?.length > 0 &&
-                  postdata.map((item, index) => {
-                    console.log("index is", index);
-                    return (
-                      <Post postCreatorName = "Ayush Raj" timeOfPost={calculateTime(item.createdAt)} postText={item.postText} postImage ={item.postImage} postId={item._id} setdelflag ={setflag}/>
-                      );
-          })}
+          {loadingState && (
+            <div
+              style={{
+                width: "200px",
+                height: "200px",
+                backgroundColor: "black",
+              }}
+            >
+              <Audio
+                height="80"
+                width="80"
+                radius="9"
+                color="green"
+                ariaLabel="loading"
+                wrapperStyle
+                wrapperClass
+              />
+            </div>
+          )}
+          <div className={styles["recentPosts"]} style={{ color: "black" }}>
+            {console.log("fsdddddddddd", postdata.length)}
+            {postdata?.length > 0 &&
+              postdata.map((item, index) => {
+                console.log("index is", index);
+                return (
+                  <Post
+                    postCreatorName="Ayush Raj"
+                    timeOfPost={calculateTime(item.createdAt)}
+                    postText={item.postText}
+                    postImage={item.postImage}
+                    postId={item._id}
+                    setdelflag={setflag}
+                  />
+                );
+              })}
             {/* <Post postCreatorName = "Ayush Raj" timeOfPost="5 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year  " postImage = "platinumBg.jpg"/>
             <Post postCreatorName = "Ayush Dingla" timeOfPost="4 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealth rally erases its losses for the year  " postImage = "goldBg.jpg"/>
             <Post postCreatorName = "Praveen Raj" timeOfPost="10 hrs ago" postText="Bitcoin’s stealth rally erases its losses for the year Bitcoin’s stealttyfyf fhjgjd hgdhw wge hevhr the year  " postImage = "platinumBg.jpg"/>
@@ -181,15 +221,15 @@ function Feed(props) {
         <div className={styles["otherList"]}>
           <div className={styles["card1"]}>
             <h2>Top traders of the week</h2>
-            <Copiers copierName = "Dingla(Org)" copierProfit="+50%" />
-            <Copiers copierName = "Singla Dingla" copierProfit="-70%" />
-            <Copiers copierName = "Sanu Dingla" copierProfit="+1%" />
+            <Copiers copierName="Dingla(Org)" copierProfit="+50%" />
+            <Copiers copierName="Singla Dingla" copierProfit="-70%" />
+            <Copiers copierName="Sanu Dingla" copierProfit="+1%" />
           </div>
           <div className={styles["card2"]}>
             <h2>Top Traders of the week</h2>
-            <Traders traderName = "Dingla(Org)" traderProfit="+50%" />
-            <Traders traderName = "Singla Dingla" traderProfit="-70%" />
-            <Traders traderName = "Sanu Dingla" traderProfit="+1%" />
+            <Traders traderName="Dingla(Org)" traderProfit="+50%" />
+            <Traders traderName="Singla Dingla" traderProfit="-70%" />
+            <Traders traderName="Sanu Dingla" traderProfit="+1%" />
           </div>
         </div>
       </div>
