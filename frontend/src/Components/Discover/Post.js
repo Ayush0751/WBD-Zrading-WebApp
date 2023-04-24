@@ -4,8 +4,9 @@ import axios from "axios";
 
 function Post(props) {
   const [flag, setflag] = useState(false)
+  const {setdelflag} = props;
   const  handleDeletePost = async(id)=>{
-    console.log("in delete");
+    console.log("in delete props for delete ",setdelflag);
     console.log("id is",id);
     // const pid = props.postId;
     try{
@@ -14,6 +15,7 @@ function Post(props) {
         console.log(pst);
         alert('Post Deleted Successfully')
         setflag(true);
+        setdelflag(true);
     }
     catch(error) {
       console.error("errorfsfsf");
@@ -66,7 +68,7 @@ function Post(props) {
         </div>
         <div className={styles["postImage"]}>
         <img
-            src={"http://localhost:8081/"+props.postImage}
+            src={props.postImage}
             alt=""
           />
           {/* <img

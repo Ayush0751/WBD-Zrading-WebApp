@@ -77,7 +77,8 @@ const [btnStatus, setbtnStatus] = useState(false)
         {/* <div className={`${styles.membership} {btnStatus?${styles.show}:${styles.hide}}`}> */}
         <div className={`${styles.membership} `}>
           <button onClick={showPlans} style={{backgroundColor:membershipCol}}>Upgrade Plan</button>
-          <MembershipDetails clicked = {btnStatus}/>
+          {btnStatus &&  < MembershipDetails setbtnStatus1 = {setbtnStatus}/>}
+          
           {/* <button ><p style={{backgroundColor:membershipCol}}>Upgrade Plan</p></button> */}
           {/* <p style={{backgroundColor:membershipCol}}>Upgrade Plan</p> */}
         </div>
