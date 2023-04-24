@@ -4,6 +4,7 @@ import Post from "./Post"
 import Copiers from "./Copiers"
 import Traders from "./Traders"
 import Navbar from "../Navbar/Navbar";
+import { TextField } from '@mui/material'
 
 import axios from "axios";
 
@@ -120,13 +121,20 @@ function Feed(props) {
               </div>
               <div className={styles["textAr"]}>
                 <form action="">
-                  <input
+                  {/* <input
                     size="50"
                     type="text"
                     name="post_text"
                     placeholder="What's on your mind"
                     onChange={handlePost}
-                  />
+                  /> */}
+                  <TextField id="standard-basic" label="What's on your mind" variant="standard" name="post_text" onChange={handlePost} style={{
+                    // width: '19em',
+                    // position: 'relative',
+                    // right: '2em',
+                    // height: '27px',
+                    // fontSize: '1.2rem'
+                  }}/>
                   <br />
                   <input
                     type="file"
@@ -134,7 +142,9 @@ function Feed(props) {
                     onChange={handleImageChange}
                   /> 
                   <br />
-                  <button onClick={handlePostSubmit}>Post</button>
+                  <div className={styles.postBtn}>
+                    <button onClick={handlePostSubmit}>Post</button>
+                  </div>
                 </form>
               </div>
             </div>

@@ -24,8 +24,9 @@ import MyPlanScreen from './Components/MyPlanScreen';
 import CashWithdrawal from './Components/ringu/CashWithdrawal';
 import Updatemodel from './Components/ringu/Updatemodel';
 import InviteFriend from './Components/ringu/InviteFriend';
+import IndexTF from './Components/AddFund/traderorofile/IndexTF';
 // import { Settings } from '';
-
+// import IndexTF from './Components/traderProfile/IndexTF'
 
 function App() {
   const denominationsList = [
@@ -70,6 +71,7 @@ function App() {
         <Route exact path="/Discover" element={<Feed />} />
         <Route exact path="/Subscriptions" element={<UserSubscription />} />
         <Route exact path="/Portfolio" element={<Portfolio />} />
+        <Route exact path="/traderProfile" element={<IndexTF/>} />
         <Route exact path="/DepositFunds" element={<AddFund />} />
         {/* Route exact path="/DepositFunds" element={<AddFund />} /> */}
         <Route exact path="/TraderLounge" element={<TraderLounge />} />
