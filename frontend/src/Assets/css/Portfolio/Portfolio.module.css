@@ -152,7 +152,9 @@ sub {
   border-radius: 17px;
   left: 10em;
   margin-bottom: 100px;
-  min-height: 33em;
+  min-height: 41em;
+  overflow: scroll;
+  overflow-x: hidden;
   width: -moz-fit-content;
   width: 81em;
   background-color: white;

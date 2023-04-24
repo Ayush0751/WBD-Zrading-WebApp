@@ -1,0 +1,87 @@
+.backGrd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: rgba(0,0,0, 0.4);
+}
+.cancel-button {
+  background-color: #e74c3c; /* set the background color */
+  border: none; /* remove the border */
+  color: white; /* set the text color */
+  font-size: 1rem; /* set the font size */
+  padding: 0.5rem 1rem; /* set the padding */
+  margin-top: 17px;
+  border-radius: 5px; /* round the corners */
+  cursor: pointer; /* change the cursor on hover */
+  transition: background-color 0.3s ease-in-out; /* add a transition effect */
+}
+
+.cancel-button:hover {
+  background-color: #c0392b; /* change the background color on hover */
+}
+
+.window{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 99vh;
+    width: 186vh;
+    border: 3px solid white;
+    /* background-color: black; */
+    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    
+}
+
+/* slider */
+.Slider {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .sliderParent{
+    position:relative;
+  }
+  .buble{
+    position:absolute;
+  }
+
+.sliderContainer{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 33%;
+}
+
+.extraBtn{
+  width: 20rem;
+  background-image: linear-gradient(45deg, #22252a 50%,#04c32d  50%, rgb(0, 76, 4)  100%);
+}
+
+.extraBtn2{
+  width: 20rem;
+  background-image: linear-gradient(45deg, #22252a 50%,#fb294f  50%, #4e0202  100%);
+}
+
+.extraBtn11{
+  width: 12rem;
+  background-image: linear-gradient(45deg, #22252a 50%,#04c32d  50%, rgb(0, 76, 4)  100%);
+}
+
+.extraBtn22{
+  width: 12rem;
+  background-image: linear-gradient(45deg, #22252a 50%,#fb294f  50%, #4e0202  100%);
+}
+
+.line{
+  width:1px;
+  height: 15rem;
+  background-color: white;
+  border : 1px solid white;
+}

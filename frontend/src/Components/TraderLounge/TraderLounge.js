@@ -1,12 +1,20 @@
+/* eslint-disable */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../../Assets/css/TraderLounge/TraderLounge.module.css";
 import Navbar from "../Navbar/Navbar";
 import Card from "./Card";
 import handleTraders from "./GetTraders";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TraderLounge() {
+  const navigate = useNavigate();
+  const navigateTo = (item) => {
+    navigate("/traderProfile", {state:{name:item}});
+  };
+
   const productContainers = [
     ...document.querySelectorAll(".product-container"),
   ];
@@ -64,6 +72,20 @@ function TraderLounge() {
     fun();
     setFlag(false);
   }, [flag]);
+  // const history = useHistory();
+  function handleClick() {
+    history.push({
+      pathname: "/traderProfile",
+      state: { myProp: "Hello World" },
+    });
+    // history.pushState
+  }
+  // const navigate = useNavigate();
+
+  // const toComponentB = () => {
+  //   navigate("/traderProfile", { state: { id: 1, name: "sabaoon" } });
+  // };
+
   return (
     <>
       <Navbar />
@@ -78,17 +100,31 @@ function TraderLounge() {
           </button>
 
           <div className={styles["product-container"]}>
-          {traderData?.length > 0 &&
+            {traderData?.length > 0 &&
               traderData.map((item, i) => (
-                <Card
-                  name={item.name}
-                  trader_id={item.trader_id}
-                  address={item.address}
-                  rating={item.rating}
-                  bio={item.bio}
-                  copiers={item.copiers}
-                  profit={item.profits}
-                />
+                <div
+                  onClick={()=>{ navigateTo(item)}}
+                  // to={{
+                  //   pathname: "/traderProfile",item
+                  // }}
+                  //  onClick={()=>{
+                  //   history.push({
+                  //     pathname: "/traderProfile",
+                  //     state: { myProp: item }
+                  //   });
+                  // }}
+                >
+                  <Card
+                    name={item.name}
+                    trader_id={item.trader_id}
+                    address={item.address}
+                    rating={item.rating}
+                    bio={item.bio}
+                    age={item.age}
+                    copiers={item.copiers}
+                    profit={item.profits}
+                  />
+                </div>
               ))}
           </div>
         </section>
@@ -115,18 +151,20 @@ function TraderLounge() {
             <i className={"fa-solid fa-angle-right"}></i>
           </button>
           <div className={styles["product-container"]}>
-          {traderData?.length > 0 &&
+            {traderData?.length > 0 &&
               traderData.map((item, i) => (
-                <Card
-                  name={item.name}
-                  trader_id={item.trader_id}
-                  address={item.address}
-                  rating={item.rating}
-                  bio={item.bio}
-                  age={item.age}
-                  copiers={item.copiers}
-                  profit={item.profits}
-                />
+                <Link to="/traderProfile">
+                  <Card
+                    name={item.name}
+                    trader_id={item.trader_id}
+                    address={item.address}
+                    rating={item.rating}
+                    bio={item.bio}
+                    age={item.age}
+                    copiers={item.copiers}
+                    profit={item.profits}
+                  />
+                </Link>
               ))}
           </div>
         </section>
@@ -155,15 +193,18 @@ function TraderLounge() {
           <div className={styles["product-container"]}>
             {traderData?.length > 0 &&
               traderData.map((item, i) => (
-                <Card
-                  name={item.name}
-                  trader_id={item.trader_id}
-                  address={item.address}
-                  rating={item.rating}
-                  bio={item.bio}
-                  copiers={item.copiers}
-                  profit={item.profits}
-                />
+                <Link to="/traderProfile">
+                  <Card
+                    name={item.name}
+                    trader_id={item.trader_id}
+                    address={item.address}
+                    rating={item.rating}
+                    bio={item.bio}
+                    age={item.age}
+                    copiers={item.copiers}
+                    profit={item.profits}
+                  />
+                </Link>
               ))}
           </div>
         </section>
@@ -190,7 +231,7 @@ function TraderLounge() {
             <i className={"fa-solid fa-angle-right"}></i>
           </button>
           <div className={styles["product-container"]}>
-          {traderData?.length > 0 &&
+            {traderData?.length > 0 &&
               traderData.map((item, i) => (
                 <Card
                   name={item.name}
