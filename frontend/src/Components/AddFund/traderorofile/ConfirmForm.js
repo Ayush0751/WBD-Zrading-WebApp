@@ -88,7 +88,7 @@ export default function ConfirmForm(props) {
     setLoadingState(true);
     // e.preventDefault();
     const order = await axios.post(
-      "http://localhost:8081/api/trader/subscribed",
+      "https://zrading-backend.onrender.com/api/trader/subscribed",
       {
         // amount: amt,
         name: items.name,

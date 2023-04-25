@@ -5,7 +5,7 @@ import axios from "axios";
     let data;
     try {
         console.log(id,"idddd");
-        const order = await (axios.delete("http://localhost:8081/api/copy/delete-order/"+id));
+        const order = await (axios.delete("https://zrading-backend.onrender.com/api/copy/delete-order/"+id));
         console.log(order.data);
         alert('Order Closed Successfully')
         // data=order.data.result

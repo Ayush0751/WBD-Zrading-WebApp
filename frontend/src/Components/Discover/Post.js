@@ -10,7 +10,7 @@ function Post(props) {
     console.log("id is",id);
     // const pid = props.postId;
     try{
-      const pst = await (axios.delete("http://localhost:8081/api/users/deletePost/"+id));
+      const pst = await (axios.delete("https://zrading-backend.onrender.com/api/users/deletePost/"+id));
         console.log("sdf");
         console.log(pst);
         alert('Post Deleted Successfully')
@@ -27,7 +27,7 @@ function Post(props) {
 
   const handleGetPost = async( )=>{
     const pst = await axios.get(
-      "http://localhost:8081/api/users/getPost");
+      "https://zrading-backend.onrender.com/api/users/getPost");
       console.log("sdf");
       console.log(pst);
     if (pst.length === 0) {

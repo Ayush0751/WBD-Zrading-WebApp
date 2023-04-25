@@ -78,7 +78,7 @@ function Form(props) {
     console.log(pass);
     setLoadingState(true);
     e.preventDefault();
-    const user = await axios.post("http://localhost:8081/api/users/login", {
+    const user = await axios.post("https://zrading-backend.onrender.com/api/users/login", {
       email: email,
       password: pass,
     });
@@ -111,7 +111,7 @@ function Form(props) {
     formdata.append("imgName", img);
 
     const user = await axios.post(
-      "http://localhost:8081/api/users/signup",
+      "https://zrading-backend.onrender.com/api/users/signup",
       formdata
     );
     if (user.length === 0) {

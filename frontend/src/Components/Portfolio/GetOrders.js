@@ -5,7 +5,7 @@ import axios from "axios";
     let data;
     try {
         console.log("hii");
-        const order = await ( axios.get("http://localhost:8081/api/copy/getOrders"));
+        const order = await ( axios.get("https://zrading-backend.onrender.com/api/copy/getOrders"));
         console.log("hii");
         // console.log(order.data.result);
         data=order.data.result

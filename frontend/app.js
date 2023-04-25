@@ -26,7 +26,7 @@ const options = {
 		},
 		servers: [
 			{
-				url: "http://localhost:8081",
+				url: "https://zrading-backend.onrender.com",
 			},
 		],
 	},

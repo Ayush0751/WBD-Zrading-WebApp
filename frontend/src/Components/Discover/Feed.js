@@ -45,7 +45,7 @@ function Feed(props) {
     // setflag(true);
     console.log("flag is ", flag);
     const pst = await axios.post(
-      "http://localhost:8081/api/users/uploadPost",
+      "https://zrading-backend.onrender.com/api/users/uploadPost",
       // {
       // postText: newPost
       formdata
@@ -65,7 +65,7 @@ function Feed(props) {
   const [postdata, setPostdata] = useState("");
 
   const handleGetPost = async () => {
-    const pst = await axios.get("http://localhost:8081/api/users/getPost");
+    const pst = await axios.get("https://zrading-backend.onrender.com/api/users/getPost");
     console.log("sdf");
     console.log(pst);
     if (pst.length === 0) {

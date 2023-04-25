@@ -18,7 +18,7 @@ export default function Navbar(props) {
     let data;
     try {
         console.log("hii1");
-        const order = await ( axios.get(`http://localhost:8081/api/users/userDetails/${email}`));
+        const order = await ( axios.get(`https://zrading-backend.onrender.com/api/users/userDetails/${email}`));
         console.log("hiiiiiiiiiiiiiiiiiiiiii");
         console.log(order.data.result, "user");
         data=order.data.result

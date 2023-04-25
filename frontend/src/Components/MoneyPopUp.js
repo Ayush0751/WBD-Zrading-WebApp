@@ -26,7 +26,7 @@ const [flag,setFlag] = useState(false);
     setLoadingState(true);
     // e.preventDefault();
     const order = await axios.post(
-      "http://localhost:8081/api/copy/copy-order",
+      "https://zrading-backend.onrender.com/api/copy/copy-order",
       {
         amount: amt,
         stoploss: slRef.current.value,

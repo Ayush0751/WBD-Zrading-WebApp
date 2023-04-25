@@ -97,7 +97,7 @@ function UserSubscription() {
   const [subsData,setSubsData]=useState('');
   const handleGetSubs = async( )=>{
     const subs = await axios.get(
-      "http://localhost:8081/api/users/getSubscriptions");
+      "https://zrading-backend.onrender.com/api/users/getSubscriptions");
       console.log("sdf");
       console.log(subs);
       if (subs.length === 0) {
