@@ -2,38 +2,39 @@
 import React, { useState } from "react";
 import { UserData } from "./data";
 import TraderChart from "./TraderChart";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
 import { Divider } from "@mui/material";
+import classes from "./StatsTr.module.css"
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SocialDistanceIcon from "@mui/icons-material/SocialDistance";
 import MovingIcon from "@mui/icons-material/Moving";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-const useSTyle = makeStyles((theme) => ({
-  tt0: {
-    width: "11em",
-    height: "11em",
-    // boxShadow:" 0px 0px 21px rgba(7, 0, 2, 0.3)",
-    // borderRadius:"12px"
-    alignItems: "flex-start",
-    display: "flex",
-    justifycontent: "center",
-    flexDirection: "column",
-    position: "relative",
-    left: "1em"
-  },
-  title10: {
-    borderRight: "1px solid grey",
-  },
-  title20: {
-    borderRight: "1px solid grey",
-  },
-  title30: {
-    borderRight: "1px solid grey",
-  },
-}));
+// const useSTyle = makeStyles((theme) => ({
+//   tt0: {
+//     width: "11em",
+//     height: "11em",
+//     // boxShadow:" 0px 0px 21px rgba(7, 0, 2, 0.3)",
+//     // borderRadius:"12px"
+//     alignItems: "flex-start",
+//     display: "flex",
+//     justifycontent: "center",
+//     flexDirection: "column",
+//     position: "relative",
+//     left: "1em"
+//   },
+//   title10: {
+//     borderRight: "1px solid grey",
+//   },
+//   title20: {
+//     borderRight: "1px solid grey",
+//   },
+//   title30: {
+//     borderRight: "1px solid grey",
+//   },
+// }));
 function StatsTr(props) {
     const {items}=props;
-  const classes = useSTyle();
+  // const classes = useSTyle();
   const [userData, setUserData] = useState({
     lavel: "Trade date:",
     labels: UserData.map((temp) => temp.TradeDate),
