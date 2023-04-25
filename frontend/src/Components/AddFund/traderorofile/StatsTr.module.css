@@ -1,0 +1,22 @@
+.tt0 {
+  width: "11em";
+  height: "11em";
+  /* // boxShadow:" 0px 0px 21px rgba(7; 0; 2; 0.3)";
+    // borderRadius:"12px" */
+  align-items: "flex-start";
+  display: "flex";
+  justify-content: "center";
+  flex-direction: "column";
+  position: "relative";
+  left: "1em";
+}
+
+.title10, .title20,.title30 {
+  border-right: "1px solid grey";
+}
+/* .title20: {
+  borderright: "1px solid grey";
+}
+.title30: {
+  borderright: "1px solid grey";
+} */
