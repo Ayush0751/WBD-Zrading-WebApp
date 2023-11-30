@@ -10,7 +10,7 @@ const Subscription = require("../models/subscription")
 
 const Redis  = require('redis')
 const redisClient = Redis.createClient({url:'rediss://red-ch3gid4eoogsn035o4t0:dzb0BGdaC7UGDeIDoWTEgLKfd04FMLOU@oregon-redis.render.com:6379'})
-const DEFAULT_EXPIRATION = 3600
+const DEFAULT_EXPIRATION = 360000
 
 const cloudinary = require("../utils/cloudinary")
 const getDataUri = require("../utils/dataUri")
